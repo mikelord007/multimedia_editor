@@ -1,21 +1,27 @@
-import React from 'react'
-import {
-    createBrowserRouter,
-    RouterProvider,
-    Route,
-  } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
+import Dashboard from "../pages/Dashboard";
+import PrivateRoute from '../components/PrivateRoute'
+import Auth from '../pages/auth'
+import HomePage from "../pages/Homepage";
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <div>Hello world! yay!</div>,
-    },
-]);
+const Routes = () => {
 
-const Router = () => {
-  return (
-    <RouterProvider router={router} />
-  )
+        const routes = useRoutes([
+                {
+                        path: '',
+                        element: <HomePage/>
+                },
+                {
+                        path: '/auth',
+                        element: <Auth/>
+                },
+                {
+                        path: '/dashboard',
+                        element: <PrivateRoute Component={Dashboard}/>
+                }
+        ])
+
+	return routes;
 }
 
-export default Router
+export default Routes;

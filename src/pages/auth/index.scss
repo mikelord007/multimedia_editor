@@ -1,0 +1,36 @@
+.auth{
+    @apply text-white relative;
+
+    height: 100vh;
+    background: #020520;
+    &::before{
+        @apply absolute inset-0;
+        content: '';
+        background: url('../../assets/images/cool_bg.jpg');
+        background-position: right;
+        filter: brightness(0.5) opacity(0.4) blur(1px);
+    }
+
+    & &__loginbtn{
+        @apply absolute top-3/4 left-1/2 flex items-center justify-center gap-4 w-56 rounded-md;
+        transform: translateX(-50%);
+        background: #0000006e;
+        padding: 0.4rem;
+    }
+
+    & &__companylogo{
+        @apply absolute;
+        width: 250px;
+        height: 250px;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    & &__companyphrase{
+        @apply absolute text-center w-full;
+        top: 50%;
+        font-size: 1.4rem;
+        font-family: monospace;
+    }
+}
