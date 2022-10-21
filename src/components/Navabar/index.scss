@@ -1,0 +1,17 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background: #586d74;
+
+    &__img{
+        height: 3rem;
+    }
+
+    &__links{
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+        justify-content: center;
+    }
+}

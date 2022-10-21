@@ -1,22 +1,22 @@
-import Router from "./router";
-import { BrowserRouter, useRoutes } from "react-router-dom";
+import Routes from "./router";
+import { BrowserRouter } from "react-router-dom";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
+import {AuthProvider} from "./context/authContextWrapper";
+import SupabaseAuthChecker from './utils/SupabaseAuthChecker'
 
-const Routes = () => {
-
-	const routes = useRoutes([
-		{
-            path: '',
-            element: <h1>Hello world!</h1>
-        }
-	])
-
-	return routes;
-}
+const queryClient = new QueryClient()
 
 const App = () => {
   return (
     <BrowserRouter>
-        <Routes/>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+            <Routes/>
+        </QueryClientProvider>
+      </AuthProvider>
     </BrowserRouter>
   )
 }
