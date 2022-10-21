@@ -1,15 +1,5 @@
 .auth{
-    @apply text-white relative;
-
-    height: 100vh;
-    background: #020520;
-    &::before{
-        @apply absolute inset-0;
-        content: '';
-        background: url('../../assets/images/cool_bg.jpg');
-        background-position: right;
-        filter: brightness(0.5) opacity(0.4) blur(1px);
-    }
+    @apply relative h-screen;
 
     & &__loginbtn{
         @apply absolute top-3/4 left-1/2 flex items-center justify-center gap-4 w-56 rounded-md;

@@ -1,4 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './reset.scss'
+@import './reset.scss';
+
+*{
+    font-family: monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", ui-monospace;
+}
+
+.tui-image-editor-controls-logo{
+    display: none !important;
+}
+
+#root{
+    min-height: 100vh;
+    background: #adbdc2;
+}
