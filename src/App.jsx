@@ -13,9 +13,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <QueryClientProvider client={queryClient}>
+        <SupabaseAuthChecker>
             <Routes/>
-        </QueryClientProvider>
+        </SupabaseAuthChecker>
       </AuthProvider>
     </BrowserRouter>
   )
