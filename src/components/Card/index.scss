@@ -1,0 +1,21 @@
+.card{
+    @apply pt-5;
+
+    & &__img{
+        @apply m-auto;
+    }
+
+    & &__body{
+        @apply flex  p-4 gap-4;
+
+        &__upvote{
+            @apply flex gap-2 items-center;
+        }
+
+        &__downvote{
+            @apply flex gap-2 items-center;
+        }
+    }
+
+
+}

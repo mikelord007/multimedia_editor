@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import supabase from '../../config/supabase.config'
 import Navbar from '../../components/Navabar'
+import Card from '../../components/Card'
+import './index.scss'
 
 const Dashboard = () => {
 
@@ -11,18 +13,18 @@ const Dashboard = () => {
     const getData = async () => {
       const { data, error } = await supabase.storage
         .from('multiimages')
-        .download('cool_bg.jpg')
+        .download('avatar1.png')
+
+      console.log('d', data)
       const urlll = URL.createObjectURL(data)
       setImages(urlll)
 
-      const {data: data2, _} = await supabase.storage
-        .from('multiimages')
-        .list('m1')
-      console.log("data2",data2)
+      // const {data: data2, _} = await supabase.storage
+      //   .from('multiimages')
+      //   .list('images')
+      // console.log("data2",data2)
     }
 
-
-  
     getData();
 
   }, [])
@@ -30,8 +32,16 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <Navbar/>
-      <div>hello world</div>
-      <img src={images} />
+      <h1 className="dashboard__heading">
+        Feed
+      </h1>
+      <div className="dashboard__cards" >
+        <Card className="dashboard__cards__card" />
+          <div className="dashboard__cards__sep"/>
+        <Card className="dashboard__cards__card" />
+          <div className="dashboard__cards__sep"/>
+        <Card className="dashboard__cards__card" />
+      </div>
     </div>
   )
 }

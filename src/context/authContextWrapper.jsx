@@ -1,3 +1,4 @@
+// import React,{useContext,useEffect, useState} from 'react'
 import React,{useReducer} from 'react'
 import supabase from "../config/supabase.config";
 
@@ -8,13 +9,17 @@ const initialState = {user: supabase.auth.currentUser, session: supabase.auth.cu
 function reducer(state, action) {
   if (action.type === 'clear')
     return action.payload;
-  else
-    return {...state, [action.type]: action.payload};
+  else {
+    
+    if(JSON.stringify(action.payload) !== JSON.stringify(state.type))
+      return {...state, [action.type]: action.payload};
+  }
 }
 
 export const AuthProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
 
   return (
     <authContext.Provider

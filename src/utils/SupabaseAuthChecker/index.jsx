@@ -1,8 +1,11 @@
 import React,{useContext,useEffect, useState} from 'react'
+import { useNavigate } from "react-router-dom";
 import authContext from '../../context/authContextWrapper'
+import supabase from '../../config/supabase.config';
 
 const SupabaseAuthChecker = ({children}) => {
     const ctx = useContext(authContext)
+    const nav = useNavigate();
 
     const [initializing, setinitializing] = useState(true)
     
@@ -10,19 +13,29 @@ const SupabaseAuthChecker = ({children}) => {
 
         ( async () => {
             const {data: {user}} = await ctx.state.supabase.auth.getUser();
-            const { session , _ } = await ctx.state.supabase.auth.getSession();
 
+            const { session , _ } = await ctx.state.supabase.auth.getSession();
             ctx.dispatch({type: 'clear', payload: {supabase: ctx.state.supabase, user: user, session: session}})
+            // console.log("h2", {supabase: ctx.state.supabase, user: user, session: session})
             setinitializing(false)
 
         })()
 
 
-        ctx.state.supabase.auth.onAuthStateChange( async (_, session) => {
+        supabase.auth.onAuthStateChange( async (event, session) => {
 
-            const {data: {user}} = await ctx.state.supabase.auth.getUser();
+            
+            const prev = await ctx.state.user.aud;
 
-            ctx.dispatch({type: 'clear', payload: {supabase: ctx.state.supabase, user: user, session: session}})
+            const {data: {user}} = await supabase.auth.getUser();
+
+            const payload = {supabase: supabase, user: user, session: session}
+            
+            ctx.dispatch({type: 'clear', payload})
+
+            if(user?.aud !== prev){
+                nav('/dashboard')
+            }
 
         });
 

@@ -9,7 +9,11 @@ import SupabaseAuthChecker from './utils/SupabaseAuthChecker'
 
 const queryClient = new QueryClient()
 
+
+
 const App = () => {
+
+
   return (
     <BrowserRouter>
       <AuthProvider>
