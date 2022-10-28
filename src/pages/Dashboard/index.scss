@@ -1,0 +1,19 @@
+.dashboard{
+    & &__heading{
+        @apply text-center p-8 text-5xl;
+
+        font-family: 'monospace';
+        color: #303638;
+    }
+
+    & &__cards{
+        @apply p-8 m-auto max-w-2xl flex flex-col gap-4;
+        background: #8a8a8a;
+
+        &__sep{
+            @apply w-full;
+            background-color: #696970;
+            height: 2px;
+        }
+    }
+}
