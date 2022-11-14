@@ -22,16 +22,21 @@ const ImageEditor = () => {
 
   const postit = async () => {
     const canvasImg = document.getElementsByClassName('lower-canvas')
-    // console.log("kljd', ",canvasImg[0].toDataURL(),typeof canvasImg)
 
-
-    console.log(typeof dataURLtoBlob(canvasImg[0].toDataURL()))
-
+    const posixtime = Math.floor(new Date().getTime() / 1000)
 
     const { data, error } = await ctx.state.supabase
       .storage
       .from('multiimages')
-      .upload('avatar1.png', dataURLtoBlob(canvasImg[0].toDataURL()))
+      .upload(`pic${posixtime}.png`, dataURLtoBlob(canvasImg[0].toDataURL()))
+
+    console.log('error: ', error);
+
+    const { error: error2 } = await ctx.state.supabase
+    .from('imgData')
+    .insert({ imgName: `pic${posixtime}.png`, userName: ctx.state.user.user_metadata.full_name, userid: ctx.state.user.id })
+
+    console.log('error: ', error2)
 
   }
 

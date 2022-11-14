@@ -8,12 +8,14 @@
 
     & &__cards{
         @apply p-8 m-auto max-w-2xl flex flex-col gap-4;
-        background: #8a8a8a;
+            
+        background: #adbdc2;
+        border: 1px solid black;
 
         &__sep{
             @apply w-full;
             background-color: #696970;
-            height: 2px;
+            height: 3px;
         }
     }
 }

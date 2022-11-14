@@ -1,5 +1,6 @@
 .card{
     @apply pt-5;
+    padding-bottom: 1.25rem;
 
     & &__img{
         @apply m-auto;
@@ -7,6 +8,7 @@
 
     & &__body{
         @apply flex  p-4 gap-4;
+        background: white;
 
         &__upvote{
             @apply flex gap-2 items-center;
