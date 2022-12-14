@@ -6,23 +6,19 @@ import './index.scss'
 
 const Dashboard = () => {
 
-  const [images, setImages] = useState([])
+  const [coredata, setCoreData] = useState([])
+  const [loading, setLoading] = useState([])
 
   useEffect(() => {
     
     const getData = async () => {
-      const { data, error } = await supabase.storage
-        .from('multiimages')
-        .download('avatar1.png')
 
-      console.log('d', data)
-      const urlll = URL.createObjectURL(data)
-      setImages(urlll)
+      const { data, error } = await supabase
+      .from('imgData')
+      .select()
 
-      // const {data: data2, _} = await supabase.storage
-      //   .from('multiimages')
-      //   .list('images')
-      // console.log("data2",data2)
+      setCoreData(data)
+
     }
 
     getData();
@@ -36,11 +32,14 @@ const Dashboard = () => {
         Feed
       </h1>
       <div className="dashboard__cards" >
-        <Card className="dashboard__cards__card" />
-          <div className="dashboard__cards__sep"/>
-        <Card className="dashboard__cards__card" />
-          <div className="dashboard__cards__sep"/>
-        <Card className="dashboard__cards__card" />
+        {coredata.map(data => {
+          return (
+            <>
+              <Card key={data.id} className="dashboard__cards__card" data={data}/>
+              <div className='dashboard__cards__sep' />
+            </>
+          )
+        })}
       </div>
     </div>
   )
